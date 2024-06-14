@@ -53,6 +53,8 @@ export default function App() {
     (roomQs && checkRoomUrl(roomQs)) || false
   );
 
+  let userStoppedSpeakingTime = 0.0;
+
   function handleRoomUrl() {
     if (checkRoomUrl(roomUrl) || autoRoomCreation) {
       setRoomError(false);
@@ -168,20 +170,27 @@ export default function App() {
           if (prevState === 'silence') {
             const speakingTime = currTime - lastTimeSilence;
             if (speakingTime >= vadStartSecs) {
-              console.log(`${type} STARTED SPEAKING`);
+              console.log(`${type} STARTED SPEAKING`, currTime);
               prevState = 'speaking';
+              if (type === 'remote' && userStoppedSpeakingTime > 0.0) {
+                const timing = currTime - userStoppedSpeakingTime - vadStartSecs;
+                console.log(`TIMING BETWEEN USER AND BOT ${timing}`);
+              }
             }
           }
-          lastTimeSpeaking = currentTime();
+          lastTimeSpeaking = currTime;
         } else {
           if (prevState === 'speaking') {
             const silenceTime = currTime - lastTimeSpeaking;
             if (silenceTime >= vadStopSecs) {
-              console.log(`${type} STOPPED SPEAKING`);
-              prevState = 'silence';
+                console.log(`${type} STOPPED SPEAKING`, currTime);
+                prevState = 'silence';
+                if (type === 'local') {
+                  userStoppedSpeakingTime = currTime - vadStopSecs;
+                }
             }
           }
-          lastTimeSilence = currentTime();
+          lastTimeSilence = currTime;
         }
 
         prevRMS = smoothedRMS;
