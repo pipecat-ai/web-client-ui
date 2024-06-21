@@ -24,6 +24,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import UserMicBubble from "../UserMicBubble";
 
 import Agent from "./Agent";
+import TESTLipSync from "./TESTLipSync";
 
 const stats_aggregator: StatsAggregator = new StatsAggregator();
 
@@ -214,6 +215,8 @@ export const Session = React.memo(
             </Button>
           </div>
         </footer>
+
+        <TESTLipSync />
       </>
     );
   },
