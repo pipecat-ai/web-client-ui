@@ -35,7 +35,7 @@ const status_text = {
 
 // Server URL (ensure trailing slash)
 let serverUrl = import.meta.env.VITE_SERVER_URL;
-if (serverUrl && !serverUrl.endsWith("/")) serverUrl += "/";
+// if (serverUrl && !serverUrl.endsWith("/")) serverUrl += "/";
 
 // Auto room creation (requires server URL)
 const autoRoomCreation = import.meta.env.VITE_MANUAL_ROOM_ENTRY ? false : true;
