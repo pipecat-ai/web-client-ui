@@ -1,4 +1,9 @@
+# Archived
+
+This repo has been archived. For a Pipecat client / server example, please checkout the [Simple Chatbot example](https://github.com/pipecat-ai/pipecat/tree/main/examples/simple-chatbot) in the `pipecat` repo.
+
 # Pipecat Client Web UI
+
 
 Some docs regarding how all this fits together: [here](/docs/)
 
